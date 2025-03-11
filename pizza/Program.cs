@@ -32,8 +32,8 @@ public class Pizza
 	public string Name { get; set; }
 	public string Category { get; set;}
 	public double Price { get; set; } 
-	public int Quantity { get; set; }	
-	public string Manufacturer { get; set; }
+	public int Quantity { get; set; }
+    public string Size { get; set; }
 }
 
 
@@ -45,6 +45,7 @@ public class Standard: Pizza
 
 public class Custom : Pizza
 {
+    public string Clientname { get; set; }
     public string ExpirationDate { get; set; }
     public string Ingredients { get; set; }
 }
