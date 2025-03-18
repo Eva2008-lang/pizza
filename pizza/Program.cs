@@ -26,6 +26,39 @@ Console.WriteLine("\t6. Sell pizza");
 Console.WriteLine("\t7.Pizza order by customer(s)");
 Console.WriteLine("\t8. Client calculation");
 
+Pizza pizza = new();
+
+while (true)
+{
+    Console.Write("Your choice: ");
+    int choice = Convert.ToInt32(Console.ReadLine());
+
+    switch (choice)
+    {
+        case 1:
+            Console.Write("Enter pizza name: ");
+            pizza.Name = Console.ReadLine();
+            Console.Write("Enter pizza category: ");
+            pizza.Category = Console.ReadLine();
+            Console.Write("Enter pizza price: ");
+            pizza.Price = Convert.ToDouble(Console.ReadLine());
+            Console.Write("Enter pizza quantity: ");
+            pizza.Quantity = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Enter pizza manufacture: ");
+            pizza.Size = Console.ReadLine();
+            break;
+
+        case 4:
+            Console.WriteLine("------- Pizza ---------");
+            Console.WriteLine($"Name: {pizza.Name}");
+            Console.WriteLine($"Category: {pizza.Category}");
+            Console.WriteLine($"Price: {pizza.Price}");
+            Console.WriteLine($"Quantity: {pizza.Quantity}");
+            Console.WriteLine($"Manufacturer: {pizza.Size}");
+            break;
+    }
+}
+
 
 public class Pizza
 {
