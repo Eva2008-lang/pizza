@@ -54,7 +54,7 @@ while (true)
             Console.WriteLine($"Category: {pizza.Category}");
             Console.WriteLine($"Price: {pizza.Price}");
             Console.WriteLine($"Quantity: {pizza.Quantity}");
-            Console.WriteLine($"Manufacturer: {pizza.Size}");
+            Console.WriteLine($"Size: {pizza.Size}");
             break;
     }
 }
