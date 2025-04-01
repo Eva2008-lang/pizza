@@ -14,6 +14,8 @@
 	Розрахунок клієнта(друк чеку, прийом оплати)
 загальний клас піца який ділеться на стандартну та кастомну
 */
+using System.Text.Json;
+
 Console.WriteLine("------Welcome in a pizzeria------"); 
 
 Console.WriteLine("\tMENU:");
@@ -26,7 +28,9 @@ Console.WriteLine("\t6. Sell pizza");
 Console.WriteLine("\t7.Pizza order by customer(s)");
 Console.WriteLine("\t8. Client calculation");
 
-Pizza pizza = new();
+
+List<Pizza> pizzas = new();
+
 
 while (true)
 {
@@ -36,26 +40,43 @@ while (true)
     switch (choice)
     {
         case 1:
-            Console.Write("Enter pizza name: ");
-            pizza.Name = Console.ReadLine();
-            Console.Write("Enter pizza category: ");
-            pizza.Category = Console.ReadLine();
-            Console.Write("Enter pizza price: ");
-            pizza.Price = Convert.ToDouble(Console.ReadLine());
-            Console.Write("Enter pizza quantity: ");
-            pizza.Quantity = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Enter pizza manufacture: ");
-            pizza.Size = Console.ReadLine();
-            break;
+            var newItem = new Pizza();
 
-        case 4:
-            Console.WriteLine("------- Pizza ---------");
-            Console.WriteLine($"Name: {pizza.Name}");
-            Console.WriteLine($"Category: {pizza.Category}");
-            Console.WriteLine($"Price: {pizza.Price}");
-            Console.WriteLine($"Quantity: {pizza.Quantity}");
-            Console.WriteLine($"Size: {pizza.Size}");
+
+            Console.Write("Enter pizza name: ");
+            newItem.Name = Console.ReadLine();
+            Console.Write("Enter pizza category: ");
+            newItem.Category = Console.ReadLine();
+            Console.Write("Enter pizza price: ");
+            newItem.Price = Convert.ToDouble(Console.ReadLine());
+            Console.Write("Enter pizza quantity: ");
+            newItem.Quantity = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Enter pizza manufacture: ");
+            newItem.Size = Console.ReadLine();
+
+            pizzas.Add(newItem);       
             break;
+     
+        case 2:
+            string jsonToSave = JsonSerializer.Serialize(pizzas);
+            Console.WriteLine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop));
+            File.WriteAllText($"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}/pizza_db.json", jsonToSave);
+            break;
+        case 3:
+            string jsonToLoad = File.ReadAllText($"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}/products_db.json");
+            pizzas = JsonSerializer.Deserialize<List<Pizza>>(jsonToLoad);
+            break;
+        case 4:
+            foreach (var item in pizzas)
+            {
+                Console.WriteLine("------- Pizza ---------");
+                Console.WriteLine($"Name: {item.Name}");
+                Console.WriteLine($"Category: {item.Category}");
+                Console.WriteLine($"Price: {item.Price}");
+                Console.WriteLine($"Quantity: {item.Quantity}");
+                Console.WriteLine($"Size: {item.Size}");
+            }
+                break;
     }
 }
 
