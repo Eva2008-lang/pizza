@@ -77,29 +77,21 @@ while (true)
                 Console.WriteLine($"Size: {item.Size}");
             }
                 break;
+        case 5:
+            for (int i = 0; i < pizzas.Count; ++i)
+                Console.WriteLine($"[{i}] Service: " + pizzas[i].Name);
+
+            Console.WriteLine("Enter number to delate:");
+            int numToDelete = Convert.ToInt32(Console.ReadLine());
+
+            if (numToDelete < 0 || numToDelete >= pizzas.Count)
+            {
+                Console.WriteLine("Number out of range!");
+                break;
+            }
+            pizzas.RemoveAt(numToDelete);
+            Console.WriteLine("Service deleted successfully!");
+            break;
+
     }
-}
-
-
-public class Pizza
-{
-	public string Name { get; set; }
-	public string Category { get; set;}
-	public double Price { get; set; } 
-	public int Quantity { get; set; }
-    public string Size { get; set; }
-}
-
-
-public class Standard: Pizza
-{
-    public string ExpirationDate { get; set; }
-    public string Ingredients { get; set; }
-}
-
-public class Custom : Pizza
-{
-    public string Clientname { get; set; }
-    public string ExpirationDate { get; set; }
-    public string Ingredients { get; set; }
 }
